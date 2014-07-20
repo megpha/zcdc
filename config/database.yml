@@ -16,6 +16,8 @@
 #
 default: &default
   adapter: postgresql
+  username: eesha
+  password: google
   encoding: unicode
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
