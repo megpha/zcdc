@@ -41,3 +41,6 @@ gem 'rspec-rails', group: [:test]
 gem 'carrierwave'
 gem 'fog'
 gem 'devise'
+
+gem 'therubyracer'
+gem 'less-rails'
