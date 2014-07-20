@@ -81,7 +81,4 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: zcdc_production
-  username: zcdc
-  password: <%= ENV['ZCDC_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>

@@ -1,0 +1,32 @@
+<%= nested_form_for(@appointment, html: { multipart: true }) do |f| %>
+  <% if @appointment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
+
+      <ul>
+      <% @appointment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :starts_at %><br>
+    <%= f.datetime_select :starts_at %>
+  </div>
+  <div class="field">
+    <%= f.label :patient_id %><br>
+    <%= f.text_field :patient_id %>
+  </div>
+
+    <%= f.fields_for :attachments do |p| %>
+      <div class="field">
+        <%= p.file_field :file, :multiple => true %>
+      </div>
+    <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
