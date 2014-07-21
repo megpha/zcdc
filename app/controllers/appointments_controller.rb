@@ -1,4 +1,5 @@
 class AppointmentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
 
   # GET /appointments
@@ -10,6 +11,13 @@ class AppointmentsController < ApplicationController
   # GET /appointments/1
   # GET /appointments/1.json
   def show
+    if params[:key]
+      @appointment.attachments.create(key: params[:key])
+      redirect_to @appointment, notice: 'Document was successfully created.'
+    end
+
+    @file = @appointment.attachments.build.document
+    @file.success_action_redirect = appointment_url(@appointment)
   end
 
   # GET /appointments/new
@@ -20,14 +28,12 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/1/edit
   def edit
-    @appointment.attachments.build
   end
 
   # POST /appointments
   # POST /appointments.json
   def create
     @appointment = Appointment.new(appointment_params)
-    byebug
 
     respond_to do |format|
       if @appointment.save

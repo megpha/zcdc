@@ -6,6 +6,21 @@ Rails.application.routes.draw do
   resources :patients
 
   devise_for :users
+
+  authenticate do
+    root 'patients#index'
+  end
+
+  unauthenticated do
+    as :user do
+      root to: 'devise/sessions#new', as: 'unauthenticated_root'
+    end
+
+    get '/logout' => redirect("/")
+  end
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

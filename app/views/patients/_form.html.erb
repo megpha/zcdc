@@ -1,49 +1,77 @@
-<%= form_for(@patient) do |f| %>
-  <% if @patient.errors.any? %>
-    <div id="error_explanation">
+<div class="row">
+  <div class="col-sm-8">
+    <%= form_for(@patient, html: { method: @patient.persisted? ? 'put' : 'post', class: 'form-horizontal', role: 'form' }) do |f| %>
+      <% if @patient.errors.any? %>
+      <div id="error_explanation">
       <h2><%= pluralize(@patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
 
       <ul>
-      <% @patient.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <% @patient.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
+    <div class="form-group">
+      <%= f.label :first_name, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+        <%= f.text_field :first_name, class: 'form-control', placeholder: 'First Name' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :last_name, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+        <%= f.text_field :last_name, class: 'form-control', placeholder: 'Last Name' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :address1, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+        <%= f.text_field :address1, class: 'form-control', placeholder: 'Address1' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :address2, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+        <%= f.text_field :address2, class: 'form-control', placeholder: 'Address2' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :city, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+        <%= f.text_field :city, class: 'form-control', placeholder: 'City' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :phone1, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+        <%= f.text_field :phone1, class: 'form-control', placeholder: 'Phone1' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :phone2, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+        <%= f.text_field :phone2, class: 'form-control', placeholder: 'Phone' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :date_of_birth, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+        <%= f.text_field :date_of_birth, class: 'form-control', placeholder: 'Date Of Birth' %>
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
   </div>
-  <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :address1 %><br>
-    <%= f.text_field :address1 %>
-  </div>
-  <div class="field">
-    <%= f.label :address2 %><br>
-    <%= f.text_field :address2 %>
-  </div>
-  <div class="field">
-    <%= f.label :city %><br>
-    <%= f.text_field :city %>
-  </div>
-  <div class="field">
-    <%= f.label :phone1 %><br>
-    <%= f.text_field :phone1 %>
-  </div>
-  <div class="field">
-    <%= f.label :phone2 %><br>
-    <%= f.text_field :phone2 %>
-  </div>
-  <div class="field">
-    <%= f.label :date_of_birth %><br>
-    <%= f.date_select :date_of_birth %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
