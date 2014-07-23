@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>First name:</strong>
   <%= @patient.first_name %>
@@ -40,5 +38,6 @@
   <%= @patient.date_of_birth %>
 </p>
 
+<%= link_to 'Add Appointment', [@patient, :appointments], method: :post %> |
 <%= link_to 'Edit', edit_patient_path(@patient) %> |
 <%= link_to 'Back', patients_path %>

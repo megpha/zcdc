@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
   resources :hospitals
 
-  resources :appointments
+  get 'appointments/today' => 'appointments#today'
+  get 'appointments/:day/:month/:year' => 'appointments#search'
 
-  resources :patients
+  resources :patients do
+    resources :appointments
+  end
+
 
   devise_for :users
 
