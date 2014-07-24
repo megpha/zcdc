@@ -1,21 +1,19 @@
-<h1>Listing appointments</h1>
+<h1>Listing appointments <%= Date.today.to_s(:short) %></h1>
 
-<table class="table table-striped">
+<table class="table table-bordered">
   <thead>
     <tr>
-      <th>Starts at</th>
       <th>Patient</th>
+      <th>Starts at</th>
     </tr>
   </thead>
 
   <tbody>
     <% @appointments.each do |appointment| %>
       <tr>
-        <td><%= appointment.starts_at.to_s(:long) %></td>
-        <td><%= link_to appointment.patient.full_name, [appointment.patient, appointment] %></td>
+        <td><%= link_to appointment.patient.full_name, appointment.patient %></td>
+        <td><%= link_to appointment.starts_at.to_s(:long), [appointment.patient, appointment] %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>

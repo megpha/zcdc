@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  resources :hospitals
-
-  get 'appointments/today' => 'appointments#today'
+  get 'appointments/today' => 'appointments#today', as: :today_appointments
   get 'appointments/:day/:month/:year' => 'appointments#search'
 
   resources :patients do

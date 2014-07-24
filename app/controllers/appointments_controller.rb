@@ -10,20 +10,13 @@ class AppointmentsController < ApplicationController
   end
 
   def today
-    @appointments = compute_appointments(Time.now)
+    @appointments = Appointment.on(Date.today)
 
     render :index
   end
 
-  def compute_appointments(date)
-    date = date.in_time_zone(Time.zone)
-    to = date.beginning_of_day
-    from = date.end_of_day
-    Appointment.where("starts_at between ? and ?", to, from)
-  end
-
   def search
-    @appointments = compute_appointments(date)
+    @appointments = Appointment.on(Date.today)
 
     render :index
   end
@@ -53,12 +46,11 @@ class AppointmentsController < ApplicationController
   # POST /appointments
   # POST /appointments.json
   def create
-    time = compute_appointments(Time.now).maximum(:starts_at)
-    @appointment = @patient.appointments.build(starts_at: (time + 10.minutes))
+    @appointment = @patient.appointments.build(starts_at: Appointment.next)
 
     respond_to do |format|
       if @appointment.save
-        format.html { redirect_to @appointment.patient, notice: 'Appointment was successfully created.' }
+        format.html { redirect_to today_appointments_path, notice: 'Appointment was successfully created.' }
         format.json { render :show, status: :created, location: @appointment }
       else
         format.html { render :new }
