@@ -19,6 +19,7 @@ module Zcdc
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.assets.paths << Rails.root.join("app", "assets", "components")
-    config.server_static_assets = true
+    config.serve_static_assets = true
+    config.assets.initialize_on_precompile = false
   end
 end
