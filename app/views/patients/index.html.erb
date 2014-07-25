@@ -13,7 +13,7 @@
         <td><%= patient.full_name %></td>
         <td><%= patient.city %></td>
         <td>
-          <%= link_to [patient, :appointments], class: 'btn', method: :post do %>
+          <%= link_to [patient, :appointments], class: 'btn', method: :post, data: { confirm: "Do you want add an appointment today?" } do %>
             <span class="fui-calendar-solid"></span>
           <% end %>
         </td>
