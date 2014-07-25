@@ -48,3 +48,10 @@ gem 'less-rails'
 gem 'nested_form'
 gem 'rmagick'
 gem 'faker'
+
+
+
+gem 'therubyrhino'  # If using JRuby
+gem 'less-rails-bootstrap'
+gem 'jquery-ui-rails'
+gem 'designmodo-flatuipro-rails', '~> 1.2'

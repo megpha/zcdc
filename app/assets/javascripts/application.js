@@ -11,8 +11,10 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui
+//= require flatuipro
 //= require jquery_ujs
 //= require turbolinks
-//= require bootstrap
+//= require twitter/bootstrap
 //= require jquery_nested_form
 //= require_tree .
