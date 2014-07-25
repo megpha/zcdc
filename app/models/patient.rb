@@ -1,5 +1,6 @@
 class Patient < ActiveRecord::Base
   has_many :appointments
+  paginates_per 20
 
   def full_name
     result = ["#{first_name}, #{last_name}"]

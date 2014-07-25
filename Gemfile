@@ -48,8 +48,7 @@ gem 'less-rails'
 gem 'nested_form'
 gem 'rmagick'
 gem 'faker'
-
-
+gem 'kaminari', '= 0.16'
 
 gem 'therubyrhino'  # If using JRuby
 gem 'less-rails-bootstrap'

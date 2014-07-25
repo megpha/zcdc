@@ -1,23 +1,25 @@
-
 <table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
       <th>City</th>
-      <th>Phone1</th>
+      <th></th>
       <th></th>
     </tr>
   </thead>
-
   <tbody>
     <% @patients.each do |patient| %>
       <tr>
-        <td><%= link_to patient.full_name, patient %></td>
-        <td><%= link_to patient.city, patient %></td>
-        <td><%= link_to patient.phone1, patient %></td>
+        <td><%= patient.full_name %></td>
+        <td><%= patient.city %></td>
         <td>
           <%= link_to [patient, :appointments], class: 'btn', method: :post do %>
             <span class="fui-calendar-solid"></span>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to patient, class: 'btn' do %>
+            <span class="fui-new"></span>
           <% end %>
         </td>
 
@@ -25,7 +27,4 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Patient', new_patient_path %>
+<%= paginate @patients %>

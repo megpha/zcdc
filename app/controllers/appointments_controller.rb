@@ -78,7 +78,7 @@ class AppointmentsController < ApplicationController
   def destroy
     @appointment.destroy
     respond_to do |format|
-      format.html { redirect_to appointments_url, notice: 'Appointment was successfully destroyed.' }
+      format.html { redirect_to today_appointments_url, notice: 'Appointment was successfully removed.' }
       format.json { head :no_content }
     end
   end

@@ -3,37 +3,29 @@
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
       <span class="sr-only">Davakhana</span>
     </button>
-    <a class="navbar-brand" href="#">Flat UI</a>
+    <a class="navbar-brand" href="#">Mana Davakhana</a>
   </div>
-    <% if user_signed_in? %>
   <div class="collapse navbar-collapse" id="navbar-collapse-01">
-    <ul class="nav navbar-nav">
-      <li class="<%= 'active' if current_page?(patients_path) %>">
-      <%= link_to  patients_path do %>
-        <span class="fui-user"> Patients</span>
-      <% end %>
-      </li>
-      <li class="<%= 'active' if current_page?(today_appointments_path) %>">
-      <%= link_to  today_appointments_path do %>
-        <span class="fui-calendar-solid"> Appointments</span>
-      <% end %>
-      </li>
-    </ul>
-      <% end %>
+    <% if user_signed_in? %>
+      <ul class="nav navbar-nav">
+        <%= render "shared/patient_nav" %>
+        <%= render "shared/appointment" %>
+      </ul>
+    <% end %>
 
     <div class="navbar-form navbar-right">
-    <ul class="nav navbar-nav">
-    <% if user_signed_in? %>
-    <li>
-      <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-      </li>
-    <% else %>
+      <ul class="nav navbar-nav">
+        <% if user_signed_in? %>
           <li>
-        <%= link_to('Login', new_user_session_path)  %>
-        </li>
-      <% end %>
-
-    </ul>
+            <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to('Login', new_user_session_path)  %>
+          </li>
+        <% end %>
+      </ul>
     </div>
-  </div><!-- /.navbar-collapse -->
+  </div>
+
 </nav><!-- /navbar -->
