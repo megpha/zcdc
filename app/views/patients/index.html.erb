@@ -5,6 +5,7 @@
       <th>Name</th>
       <th>City</th>
       <th>Phone1</th>
+      <th></th>
     </tr>
   </thead>
 
@@ -15,8 +16,8 @@
         <td><%= link_to patient.city, patient %></td>
         <td><%= link_to patient.phone1, patient %></td>
         <td>
-          <%= link_to [patient, :appointments], method: :post do %>
-            <i class="glyphicon glyphicon-calendar"></i>
+          <%= link_to [patient, :appointments], class: 'btn', method: :post do %>
+            <span class="fui-calendar-solid"></span>
           <% end %>
         </td>
 
