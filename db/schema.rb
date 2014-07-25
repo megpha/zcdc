@@ -33,17 +33,6 @@ ActiveRecord::Schema.define(version: 20140721002544) do
     t.datetime "updated_at"
   end
 
-  create_table "hospitals", force: true do |t|
-    t.string   "name"
-    t.string   "address1"
-    t.string   "address2"
-    t.string   "city"
-    t.string   "phone1"
-    t.string   "phone2"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "patients", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
