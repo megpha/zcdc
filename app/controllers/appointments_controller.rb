@@ -1,6 +1,7 @@
 class AppointmentsController < ApplicationController
+
   before_action :authenticate_user!
-  before_action :set_patient, only: [:create, :show, :edit, :update, :destroy]
+  before_action :set_patient, only: [:create, :new]
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
 
   # GET /appointments
@@ -30,7 +31,7 @@ class AppointmentsController < ApplicationController
     end
 
     @file = @appointment.attachments.build.document
-    @file.success_action_redirect = patient_appointment_url(@patient, @appointment)
+    @file.success_action_redirect = appointment_url(@appointment)
   end
 
   # GET /appointments/new
@@ -90,12 +91,12 @@ class AppointmentsController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_appointment
-      @appointment = @patient.appointments.find(params[:id])
+      @appointment = Appointment.find(params[:id])
     end
 
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def appointment_params
-      params.require(:appointment).permit(:starts_at, :patient_id, attachments_attributes: [:file, :_destroy])
+      params.require(:appointment).permit(:starts_at, :blood_pressure, :weight_in_kgs, :height_in_cms, :notes, :prescription, :patient_id, attachments_attributes: [:file, :_destroy])
     end
 end

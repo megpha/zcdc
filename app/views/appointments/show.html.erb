@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Starts at:</strong>
   <%= @appointment.starts_at %>
@@ -12,9 +10,8 @@
   <%= f.submit %>
 <% end %>
 
-<strong>Patient:</strong>
-  <%= @appointment.patient %>
-</p>
+<%= render partial: 'patients/core', locals: { patient: @appointment.patient } %>
+
 <% @appointment.attachments.each do | attachment | %>
   <%= image_tag attachment.document_url, width: 100, height: 100 %>
 <% end %>

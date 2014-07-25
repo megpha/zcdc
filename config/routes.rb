@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   get 'appointments/:day/:month/:year' => 'appointments#search'
 
   resources :patients do
-    resources :appointments
+    resources :appointments, only: [:new, :create]
   end
+  resources :appointments, only: [:edit, :destroy, :update, :show]
 
 
   devise_for :users

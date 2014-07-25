@@ -18,6 +18,12 @@ ActiveRecord::Schema.define(version: 20140721002544) do
 
   create_table "appointments", force: true do |t|
     t.datetime "starts_at"
+    t.float    "blood_pressure"
+    t.float    "weight_in_kgs"
+    t.float    "height_in_cms"
+    t.string   "issue"
+    t.string   "prescription"
+    t.string   "notes"
     t.integer  "patient_id"
     t.datetime "created_at"
     t.datetime "updated_at"
