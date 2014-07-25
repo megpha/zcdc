@@ -53,4 +53,5 @@ gem 'kaminari', '= 0.16'
 gem 'therubyrhino'  # If using JRuby
 gem 'less-rails-bootstrap'
 gem 'jquery-ui-rails'
+gem 'fuzzily'
 gem 'designmodo-flatuipro-rails', '~> 1.2'

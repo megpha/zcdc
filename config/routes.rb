@@ -3,8 +3,13 @@ Rails.application.routes.draw do
   get 'appointments/:day/:month/:year' => 'appointments#search'
 
   resources :patients do
+    collection do
+      get 'suggestions'
+    end
+
     resources :appointments, only: [:new, :create]
   end
+
   resources :appointments, only: [:edit, :destroy, :update, :show]
 
 

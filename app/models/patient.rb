@@ -1,11 +1,10 @@
 class Patient < ActiveRecord::Base
   has_many :appointments
   paginates_per 20
+  fuzzily_searchable :full_name
 
   def full_name
-    result = ["#{first_name}, #{last_name}"]
-    result.push(" (#{age})") if age.present?
-    result.join
+    "#{first_name} #{last_name}"
   end
 
   def age

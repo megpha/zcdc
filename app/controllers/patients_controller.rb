@@ -8,6 +8,10 @@ class PatientsController < ApplicationController
     @patients = Patient.order(:first_name).page params[:page]
   end
 
+  def suggestions
+    @patients = Patient.find_by_fuzzy_full_name(params[:q], :limit => 10)
+  end
+
   # GET /patients/1
   # GET /patients/1.json
   def show
