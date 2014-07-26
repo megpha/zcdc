@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'appointments/today/:type' => 'appointments#today', as: :today_appointments
+
+	get 'appointments/today/:type' => 'appointments#today', as: :today_appointments
   get 'appointments/:day/:month/:year' => 'appointments#search'
 
   resources :patients do
@@ -14,6 +15,10 @@ Rails.application.routes.draw do
     member do
       get 'completed', as: :completed
     end
+	  collection do
+		  get 'manadavakhana'
+	  end
+
   end
 
 
