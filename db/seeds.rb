@@ -23,3 +23,16 @@ to   = Date.parse("2013-01-01")
     date_of_birth: Faker::Date.between(from, to)
   )
 end
+5.times do
+Patient.
+  first.
+  appointments.
+  create(starts_at: rand(10.years).ago,
+         blood_pressure: 100.2,
+         weight_in_kgs: 34,
+         height_in_cms: 233,
+         issue: Faker::Lorem.sentences(1).join,
+         notes: Faker::Lorem.paragraph(2),
+         prescription: Faker::Lorem.paragraph(2)
+        )
+end

@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <i class="glyphicon glyphicon-time"></i>
+    <%= appointment.starts_at.to_s(:long) %>
+  </div>
+
+  <div class="panel-body">
+    <p> <strong>Notes</strong> <%= appointment.notes %> </p>
+    <p> <strong>Prescription</strong> <%= appointment.prescription %> </p>
+    <p> <strong>Issue</strong> <%= appointment.issue %> </p>
+    <p> <strong>Weight</strong> <%= appointment.weight_in_kgs %> </p>
+    <p> <strong>Height</strong> <%= appointment.height_in_cms %> </p>
+    <p> <strong>Blood Pressure</strong> <%= appointment.blood_pressure %> </p>
+  </div>
+</div>

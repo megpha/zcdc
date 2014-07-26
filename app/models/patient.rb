@@ -12,4 +12,12 @@ class Patient < ActiveRecord::Base
     now = Time.now.utc.to_date
     now.year - date_of_birth.year - (date_of_birth.to_date.change(year: now.year, day: 1) > now ? 1 : 0)
   end
+
+  def current_appointment
+    appointments.last || appointments.create
+  end
+
+  def past_appointments
+    appointments.to_a - [current_appointment]
+  end
 end
