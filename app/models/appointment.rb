@@ -3,6 +3,11 @@ class Appointment < ActiveRecord::Base
   has_many :attachments, as: :attachable
   accepts_nested_attributes_for :attachments
 
+
+  #validates :patient_id, :uniqueness => true
+
+  #validates_uniqueness_of :patient_id, :scope => :starts_at
+
   def self.on(date)
     date    = date.in_time_zone(Time.zone)
     to      = date.beginning_of_day

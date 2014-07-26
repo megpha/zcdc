@@ -54,3 +54,4 @@ gem 'therubyrhino'  # If using JRuby
 gem 'less-rails-bootstrap'
 gem 'jquery-ui-rails'
 gem 'designmodo-flatuipro-rails', '~> 1.2'
+gem 'table_print'
