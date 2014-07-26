@@ -79,7 +79,7 @@ class AppointmentsController < ApplicationController
   def completed
     @appointment.completed!
     respond_to do |format|
-      format.html { redirect_to today_appointments_path(type: 'active'), notice: 'Appointment was successfully removed.' }
+      format.html { redirect_to today_appointments_path(type: 'active'), notice: 'Appointment was successfully completed.' }
       format.json { head :no_content }
     end
   end
