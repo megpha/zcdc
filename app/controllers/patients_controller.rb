@@ -15,6 +15,13 @@ class PatientsController < ApplicationController
   # GET /patients/1
   # GET /patients/1.json
   def show
+    if params[:key]
+      @patient.current_appointment.attachments.create(key: params[:key])
+      redirect_to @patient, notice: 'Document was successfully created.'
+    end
+
+    @file = @patient.current_appointment.attachments.build.document
+    @file.success_action_redirect = patient_url(@patient)
   end
 
   # GET /patients/new

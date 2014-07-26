@@ -25,13 +25,6 @@ class AppointmentsController < ApplicationController
   # GET /appointments/1
   # GET /appointments/1.json
   def show
-    if params[:key]
-      @appointment.attachments.create(key: params[:key])
-      redirect_to [@patient, @appointment], notice: 'Document was successfully created.'
-    end
-
-    @file = @appointment.attachments.build.document
-    @file.success_action_redirect = appointment_url(@appointment)
   end
 
   # GET /appointments/new
@@ -42,6 +35,13 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/1/edit
   def edit
+    if params[:key]
+      @appointment.attachments.create(key: params[:key])
+      redirect_to [:edit,  @appointment], notice: 'Document was successfully created.'
+    end
+
+    @file = @appointment.attachments.build.document
+    @file.success_action_redirect = edit_appointment_url(@appointment)
   end
 
   # POST /appointments

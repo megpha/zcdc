@@ -12,4 +12,10 @@
     <p> <strong>Height</strong> <%= appointment.height_in_cms %> </p>
     <p> <strong>Blood Pressure</strong> <%= appointment.blood_pressure %> </p>
   </div>
+
+  <div class="panel-footer">
+    <% appointment.attachments.each do | attachment | %>
+      <%= image_tag attachment.document.url,  class: "img-thumbnail" %>
+    <% end %>
+  </div>
 </div>

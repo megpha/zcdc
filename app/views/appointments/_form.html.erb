@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-sm-10">
+  <div class="col-md-7">
     <%= form_for(@appointment, html: { multipart: true }) do |f| %>
       <% if @appointment.errors.any? %>
         <div id="error_explanation">
@@ -46,19 +46,33 @@
         </div>
       </div>
 
-      <%= f.fields_for :attachments do |p| %>
-        <div class="field">
-          <%= p.file_field :file, :multiple => true %>
+      <div class="col-sm-10">
+        <div class="form-group">
+          <%= f.submit class: 'btn btn-primary' %>
         </div>
+      </div>
       <% end %>
 
       <div class="col-sm-10">
         <div class="form-group">
-          <%= f.submit class: 'btn btn-primary' %>
-          <%= link_to 'Cancel', @appointment.patient , class: 'btn btn-danger' %>
+          <%= direct_upload_form_for @file do |f| %>
+            <%= f.file_field :file, class: 'form-control' %>
+            <%= f.submit("Add document", class: 'btn btn-primary') %>
+          <% end %>
         </div>
       </div>
+  </div>
+  <div class="col-md-4">
+    <%= link_to @appointment.patient, class: 'btn' do %>
+        <span class="fui-user">
+          <%= @appointment.patient.full_name%> Info
+        </span>
       <% end %>
+  <% @appointment.attachments.in_groups_of(4).each do | group | %>
+    <% group.compact.each do | attachment | %>
+        <%= image_tag attachment.document.url,  class: "img-thumbnail" %>
+    <% end %>
+  <% end %>
 
   </div>
 </div>

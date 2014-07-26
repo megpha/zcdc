@@ -23,5 +23,23 @@
         <%= f.submit class: 'btn btn-info' %>
       </div>
     <% end %>
+    <div class="col-sm-10">
+      <div class="form-group">
+        <%= direct_upload_form_for @file do |f| %>
+          <%= f.file_field :file, class: 'form-control' %>
+          <%= f.submit("Add document", class: 'btn btn-primary') %>
+        <% end %>
+      </div>
+    </div>
   </div>
+</div>
+
+<div class="row">
+  <% patient.current_appointment.attachments.in_groups_of(4).each do | group | %>
+    <% group.compact.each do | attachment | %>
+      <div class="col-xs-6 col-md-3">
+        <%= image_tag attachment.document.url,  class: "img-thumbnail" %>
+      </div>
+    <% end %>
+  <% end %>
 </div>
