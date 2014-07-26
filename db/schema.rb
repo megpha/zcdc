@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20140725162634) do
 
   create_table "appointments", force: true do |t|
     t.datetime "starts_at"
+    t.datetime "completed_at"
     t.float    "blood_pressure"
     t.float    "weight_in_kgs"
     t.float    "height_in_cms"

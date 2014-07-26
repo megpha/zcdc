@@ -2,16 +2,16 @@ class AppointmentsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_patient, only: [:create, :new]
-  before_action :set_appointment, only: [:show, :edit, :update, :destroy]
+  before_action :set_appointment, only: [:show, :edit, :update, :destroy, :completed]
 
   # GET /appointments
   # GET /appointments.json
   def index
-    @appointments = @patient.appointments
+    @appointments = @patient.appointments.active
   end
 
   def today
-    @appointments = Appointment.on(Date.today)
+    @appointments = Appointment.on(Date.today).send(params[:type])
 
     render :index
   end
@@ -71,6 +71,16 @@ class AppointmentsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @appointment.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  # DELETE /appointments/1
+  # DELETE /appointments/1.json
+  def completed
+    @appointment.completed!
+    respond_to do |format|
+      format.html { redirect_to today_appointments_url, notice: 'Appointment was successfully removed.' }
+      format.json { head :no_content }
     end
   end
 
