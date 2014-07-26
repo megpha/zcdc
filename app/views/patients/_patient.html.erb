@@ -1,17 +1,30 @@
 <div class="row well">
   <div class="col-xs-6 col-md-4">
-    <%= link_to [ :completed, patient.current_appointment], class: 'btn btn-info' do %>
-      Visit completed
+
+    <% if patient.current_appointment.completed_at  %>
+      <%= link_to [patient, :appointments], class: 'btn', method: :post, data: { confirm: "Do you want add an appointment today?" } do %>
+        Add new appointment
+      <% end %>
+    <% else %>
+      <%= link_to [ :completed, patient.current_appointment], class: 'btn btn-info' do %>
+        Visit completed
+      <% end %>
     <% end %>
+
     <h6> <%= patient.full_name %> </h6>
     <small><%= patient.address1 %> </small>
     <p> <small><%= patient.city %> </small> </p>
+  <% unless patient.current_appointment.completed_at  %>
     <p> <strong>Weight:</strong> <%= patient.current_appointment.weight_in_kgs %> </p>
     <p> <strong>Height:</strong> <%= patient.current_appointment.height_in_cms %> </p>
     <p> <strong>Blood Pressure:</strong> <%= patient.current_appointment.blood_pressure %> </p>
     <p> <strong>Issue:</strong> <%= patient.current_appointment.issue %> </p>
+    <i class="glyphicon glyphicon-time"></i>
+    <%= patient.current_appointment.starts_at.to_s(:long) %>
+  <% end %>
   </div>
 
+  <% unless patient.current_appointment.completed_at  %>
   <div class="col-xs-6 col-md-4">
     <%= form_for(patient.current_appointment) do |f| %>
       <div class="form-group">
@@ -35,8 +48,10 @@
       </div>
     </div>
   </div>
+  <% end %>
 </div>
 
+  <% unless patient.current_appointment.completed_at  %>
 <div class="row">
   <% patient.current_appointment.attachments.in_groups_of(4).each do | group | %>
     <% group.compact.each do | attachment | %>
@@ -46,3 +61,4 @@
     <% end %>
   <% end %>
 </div>
+  <% end %>
