@@ -2,6 +2,7 @@ class CreateAppointments < ActiveRecord::Migration
   def change
     create_table :appointments do |t|
       t.datetime :starts_at
+      t.datetime :completed_at
       t.float :blood_pressure
       t.float :weight_in_kgs
       t.float :height_in_cms

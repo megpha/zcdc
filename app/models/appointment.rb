@@ -2,6 +2,8 @@ class Appointment < ActiveRecord::Base
   belongs_to :patient
   has_many :attachments, as: :attachable
   accepts_nested_attributes_for :attachments
+  scope :active, -> { where(completed_at: nil) }
+  scope :completed, -> { where("completed_at is not null") }
 
 
   #validates :patient_id, :uniqueness => true
@@ -22,5 +24,9 @@ class Appointment < ActiveRecord::Base
     result  = on(to).maximum(:starts_at)
 
     result.nil? ? (to + 10.hours) : result + 10.minutes
+  end
+
+  def completed!
+    touch(:completed_at)
   end
 end

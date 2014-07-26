@@ -92,6 +92,8 @@ GEM
       fog-core
       fog-json
     formatador (0.2.5)
+    fuzzily (0.3.2)
+      activerecord (>= 2.3.17)
     hike (1.2.3)
     i18n (0.6.11)
     inflecto (0.0.2)
@@ -220,6 +222,7 @@ DEPENDENCIES
   devise
   faker
   fog
+  fuzzily
   jbuilder (~> 2.0)
   jquery-rails
   jquery-ui-rails

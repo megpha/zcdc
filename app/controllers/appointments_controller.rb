@@ -2,16 +2,16 @@ class AppointmentsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_patient, only: [:create, :new]
-  before_action :set_appointment, only: [:show, :edit, :update, :destroy]
+  before_action :set_appointment, only: [:show, :edit, :update, :destroy, :completed]
 
   # GET /appointments
   # GET /appointments.json
   def index
-    @appointments = @patient.appointments
+    @appointments = @patient.appointments.active
   end
 
   def today
-    @appointments = Appointment.on(Date.today)
+    @appointments = Appointment.on(Date.today).send(params[:type])
 
     render :index
   end
@@ -25,13 +25,6 @@ class AppointmentsController < ApplicationController
   # GET /appointments/1
   # GET /appointments/1.json
   def show
-    if params[:key]
-      @appointment.attachments.create(key: params[:key])
-      redirect_to [@patient, @appointment], notice: 'Document was successfully created.'
-    end
-
-    @file = @appointment.attachments.build.document
-    @file.success_action_redirect = appointment_url(@appointment)
   end
 
   # GET /appointments/new
@@ -42,6 +35,13 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/1/edit
   def edit
+    if params[:key]
+      @appointment.attachments.create(key: params[:key])
+      redirect_to [:edit,  @appointment], notice: 'Document was successfully created.'
+    end
+
+    @file = @appointment.attachments.build.document
+    @file.success_action_redirect = edit_appointment_url(@appointment)
   end
 
   # POST /appointments
@@ -51,7 +51,7 @@ class AppointmentsController < ApplicationController
 
     respond_to do |format|
       if @appointment.save
-        format.html { redirect_to today_appointments_path, notice: 'Appointment was successfully created.' }
+        format.html { redirect_to today_appointments_path(type: 'active'), notice: 'Appointment was successfully created.' }
         format.json { render :show, status: :created, location: @appointment }
       else
         format.html { render :new }
@@ -65,7 +65,7 @@ class AppointmentsController < ApplicationController
   def update
     respond_to do |format|
       if @appointment.update(appointment_params)
-        format.html { redirect_to @appointment, notice: 'Appointment was successfully updated.' }
+        format.html { redirect_to @appointment.patient, notice: 'Appointment was successfully updated.' }
         format.json { render :show, status: :ok, location: @appointment }
       else
         format.html { render :edit }
@@ -76,10 +76,20 @@ class AppointmentsController < ApplicationController
 
   # DELETE /appointments/1
   # DELETE /appointments/1.json
+  def completed
+    @appointment.completed!
+    respond_to do |format|
+      format.html { redirect_to today_appointments_path(type: 'active'), notice: 'Appointment was successfully removed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  # DELETE /appointments/1
+  # DELETE /appointments/1.json
   def destroy
     @appointment.destroy
     respond_to do |format|
-      format.html { redirect_to today_appointments_url, notice: 'Appointment was successfully removed.' }
+      format.html { redirect_to today_appointments_path(type: 'active'), notice: 'Appointment was successfully removed.' }
       format.json { head :no_content }
     end
   end

@@ -1,11 +1,20 @@
 Rails.application.routes.draw do
-  get 'appointments/today' => 'appointments#today', as: :today_appointments
+  get 'appointments/today/:type' => 'appointments#today', as: :today_appointments
   get 'appointments/:day/:month/:year' => 'appointments#search'
 
   resources :patients do
+    collection do
+      get 'suggestions'
+    end
+
     resources :appointments, only: [:new, :create]
   end
-  resources :appointments, only: [:edit, :destroy, :update, :show]
+
+  resources :appointments, only: [:edit, :destroy, :update, :show] do
+    member do
+      get 'completed', as: :completed
+    end
+  end
 
 
   devise_for :users

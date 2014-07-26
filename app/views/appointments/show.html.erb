@@ -4,16 +4,10 @@
 </p>
 
 <p>
-<p>
-<%= direct_upload_form_for @file do |f| %>
-  <%= f.file_field :file %>
-  <%= f.submit %>
-<% end %>
-
 <%= render partial: 'patients/core', locals: { patient: @appointment.patient } %>
 
 <% @appointment.attachments.each do | attachment | %>
   <%= image_tag attachment.document_url, width: 100, height: 100 %>
 <% end %>
 
-
+<%= render "appointments/appointment" %>

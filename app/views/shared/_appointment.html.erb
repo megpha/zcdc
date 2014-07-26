@@ -6,8 +6,11 @@
   <span class="dropdown-arrow"></span>
   <ul class="dropdown-menu">
     <li>
-      <%= link_to  today_appointments_path do %>
-          Today
+      <%= link_to  today_appointments_path(type: 'active') do %>
+        Remaining
+      <% end %>
+      <%= link_to  today_appointments_path(type: 'completed') do %>
+          Completed
       <% end %>
     </li>
   </ul>

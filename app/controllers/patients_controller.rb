@@ -8,9 +8,20 @@ class PatientsController < ApplicationController
     @patients = Patient.order(:first_name).page params[:page]
   end
 
+  def suggestions
+    @patients = Patient.find_by_fuzzy_full_name(params[:q], :limit => 10)
+  end
+
   # GET /patients/1
   # GET /patients/1.json
   def show
+    if params[:key]
+      @patient.current_appointment.attachments.create(key: params[:key])
+      redirect_to @patient, notice: 'Document was successfully created.'
+    end
+
+    @file = @patient.current_appointment.attachments.build.document
+    @file.success_action_redirect = patient_url(@patient)
   end
 
   # GET /patients/new
