@@ -3,7 +3,9 @@
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
       <span class="sr-only">Mana Davakhana</span>
     </button>
-    <a class="navbar-brand" href="#"> Mana Davakhana </a>
+
+    <a class="navbar-brand" href="/homes/index" > Mana Davakhana</a>
+
   </div>
   <div class="collapse navbar-collapse" id="navbar-collapse-01">
     <% if user_signed_in? %>
@@ -14,13 +16,16 @@
     <% end %>
     <div class="navbar-form navbar-right">
       <ul class="nav navbar-nav">
+        <%= image_tag("Caduceus-128.png", size: "60") %>
         <% if user_signed_in? %>
           <li>
             <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+
           </li>
         <% else %>
           <li>
             <%= link_to('Login', new_user_session_path)  %>
+
           </li>
         <% end %>
       </ul>

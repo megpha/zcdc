@@ -1,9 +1,9 @@
 class AppointmentsController < ApplicationController
 
-  before_action :authenticate_user!
+
   before_action :set_patient, only: [:create, :new]
   before_action :set_appointment, only: [:show, :edit, :update, :destroy, :completed]
-
+  before_action :authenticate_user!
   # GET /appointments
   # GET /appointments.json
   def index
