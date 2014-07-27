@@ -47,7 +47,9 @@ class AppointmentsController < ApplicationController
   # POST /appointments
   # POST /appointments.json
   def create
-    @appointment = @patient.appointments.build(starts_at: Appointment.next)
+    @appointment = @patient.appointments.build(appointment_params)
+
+    @appointment.starts_at ||= Appointment.next
 
     respond_to do |format|
       if @appointment.save
@@ -107,6 +109,6 @@ class AppointmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def appointment_params
-      params.require(:appointment).permit(:starts_at, :blood_pressure, :weight_in_kgs, :height_in_cms, :notes, :prescription, :patient_id, attachments_attributes: [:file, :_destroy])
+      params.require(:appointment).permit(:starts_at, :blood_pressure, :weight_in_kgs, :height_in_cms, :notes, :prescription, :patient_id, :starts_at)
     end
 end
