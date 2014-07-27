@@ -1,8 +1,8 @@
-<h5> <font color="#228b22"> Forgot your password? </font> </h5>
+<%= image_tag("doctorband.png", height: "180", width: "1150", class: "btn btn-block") %>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
     <%= devise_error_messages! %>
-
+    <h3 align="center"><font color="#228b22"> Forgot your password? </font></h3>
     <div class="login-screen">
       <div class="login-form">
 
