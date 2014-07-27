@@ -17,4 +17,7 @@
 //= require twitter/bootstrap
 //= require jquery_nested_form
 //= require underscore
+//= require typeahead.js/dist/typeahead.bundle.min
+//= require moment/min/moment.min
+//= require eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min
 //= require_tree .

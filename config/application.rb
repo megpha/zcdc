@@ -20,5 +20,6 @@ module Zcdc
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.serve_static_assets = true
     config.assets.initialize_on_precompile = false
+    config.assets.paths << Rails.root.join("app", "assets", "components")
   end
 end

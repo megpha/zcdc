@@ -13,6 +13,7 @@
  *= require_tree .
  *= require jquery-ui
  *= require custom_bootstrap/custom_bootstrap
+ *= require eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min
  *= require_self
  */
 
