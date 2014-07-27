@@ -20,7 +20,7 @@
     <p> <strong>Blood Pressure:</strong> <%= patient.current_appointment.blood_pressure %> </p>
     <p> <strong>Issue:</strong> <%= patient.current_appointment.issue %> </p>
     <i class="glyphicon glyphicon-time"></i>
-    <%= patient.current_appointment.starts_at.to_s(:long) %>
+    <%= patient.current_appointment.starts_at %>
   <% end %>
   </div>
 
