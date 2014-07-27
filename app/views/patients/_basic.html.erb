@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
+    <div class="well profile">
+      <div class="col-sm-12">
+        <div class="col-xs-12 col-sm-8">
+          <h6><%= patient.full_name %></h6>
+          <p><strong>Phone: </strong> <%= patient.phone1 %> </p>
+        </div>
+        <div class="col-xs-12 col-sm-4 text-center">
+            <img src="http://www.localcrimenews.com/wp-content/uploads/2013/07/default-user-icon-profile.png" alt="" class="img-circle img-responsive">
+        </div>
+      </div>
+
+      <div class="col-xs-12 divider text-center">
+        <%= link_to [patient, :appointments], class: 'btn btn-success btn-block', method: :post, data: { confirm: "Do you want add an appointment today?" } do %>
+          Add Appointment Now
+        <% end %>
+
+        <button class="btn btn-info btn-block">
+          Appointment Later </button>
+      </div>
+    </div>
+  </div>
+</div>

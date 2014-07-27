@@ -1,7 +1,7 @@
 class Patient < ActiveRecord::Base
   has_many :appointments
   paginates_per 20
-  #fuzzily_searchable :full_name
+  fuzzily_searchable :full_name
 
   def full_name
     "#{first_name} #{last_name}"
