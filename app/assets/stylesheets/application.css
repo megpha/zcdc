@@ -11,9 +11,6 @@
  * file per style scope.
  *
  *= require_tree .
- *= require jquery-ui
  *= require custom_bootstrap/custom_bootstrap
  *= require_self
  */
-
-

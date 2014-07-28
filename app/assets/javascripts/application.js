@@ -18,3 +18,4 @@
 //= require jquery_nested_form
 //= require underscore
 //= require_tree .
+// jQuery UI Datepicker JS init

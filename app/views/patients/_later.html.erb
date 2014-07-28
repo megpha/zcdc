@@ -1,0 +1,36 @@
+<!-- Modal -->
+<div class="modal fade" id="laterAppointment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="row">
+    <div class="col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
+  <%= form_for([@patient, @patient.appointments.build]) do |f| %>
+ 
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Select Appointment Time</h4>
+      </div>
+      <div class="modal-body">
+    
+      
+        <div class="form-group">
+        <%= f.datetime_select :starts_at, ampm: true, minute_step: 15 %>
+      </div>
+     
+      
+      </div>
+      <div class="modal-footer">
+      <div class="form-group">
+     
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <%= f.submit("Add", class: 'btn btn-info btn-default') %>
+      </div>
+
+      </div>
+ <% end %>
+     
+       </div>
+      </div>
+    </div>
+  </div>
+</div>
