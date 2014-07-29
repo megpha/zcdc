@@ -9,25 +9,30 @@
   </div>
   <div class="collapse navbar-collapse" id="navbar-collapse-01">
     <% if user_signed_in? %>
-      <ul class="nav navbar-nav">
-        <%= render "shared/patient_nav" %>
-        <%= render "shared/appointment" %>
-      </ul>
+        <ul class="nav navbar-nav">
+          <%= render "shared/patient_nav" %>
+          <%= render "shared/appointment" %>
+        </ul>
     <% end %>
     <div class="navbar-form navbar-right">
       <ul class="nav navbar-nav">
-        <%= image_tag("Caduceus-128.png", size: "60") %>
         <% if user_signed_in? %>
-          <li>
-            <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+            <li>
+              <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
 
-          </li>
+            </li>
+            <li>
+              <%= image_tag("Caduceus-128.png", size: "60") %>
+            </li>
         <% else %>
-          <li>
-            <%= link_to('Login', new_user_session_path)  %>
-
-          </li>
+            <li>
+              <%= link_to('Login', new_user_session_path)  %>
+            </li>
+            <li>
+              <%= image_tag("Caduceus-128.png", size: "60") %>
+            </li>
         <% end %>
+
       </ul>
     </div>
   </div>
