@@ -19,9 +19,9 @@
             <% end %>
           </div>
 
-          <% if devise_mapping.rememberable? -%>
+          <% if devise_mapping.rememberable? %>
               <div>
-                <%= f.label :remember_me, class: 'checkbox' do %>
+                <%= f.label :remember_me, class: 'checkbox active' do %>
                     <%= f.check_box :remember_me, "data-toggle" => "checkbox" %>
                     Remember me
                 <% end %>
